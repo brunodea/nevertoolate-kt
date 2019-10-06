@@ -6,6 +6,9 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
+/**
+ * The interface which provides methods to get result of webservices
+ */
 interface RedditApiInterface {
 
     @GET("r/getmotivated/new/.json")
@@ -13,7 +16,7 @@ interface RedditApiInterface {
 
     companion object Factory {
 
-        private const val BASE_URL = "https://www.reddit.com/"
+        public const val BASE_URL = "https://www.reddit.com/"
 
         fun create(): RedditApiInterface {
             val retrofit = retrofit2.Retrofit.Builder()
