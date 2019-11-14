@@ -3,6 +3,7 @@
 buildscript {
     ext.kotlin_version = '1.3.70-dev-972'
     ext.androidgradleplugin_version = '3.6.0-beta02'
+    ext.ktlint_version = "7.1.0"
     repositories {
         google()
         jcenter()
@@ -10,12 +11,27 @@ buildscript {
         maven {
             url "https://dl.bintray.com/kotlin/kotlin-dev/"
         }
+
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$androidgradleplugin_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath "org.jlleitschuh.gradle:ktlint-gradle:$ktlint_version"
+    }
+}
+
+plugins {
+    id "org.jlleitschuh.gradle.ktlint" version "$ktlint_version"
+}
+
+subprojects {
+    apply plugin: "org.jlleitschuh.gradle.ktlint"
+
+    ktlint {
+        debug = true
     }
 }
 
